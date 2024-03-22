@@ -32,26 +32,5 @@
       ]
     }
   },
-  "CSS": {
-    "body": {
-      "font-family": "Arial, sans-serif"
-    },
-    "#header": {
-      "background-color": "#333",
-      "color": "#fff",
-      "padding": "10px"
-    },
-    "#content": {
-      "padding": "20px"
-    },
-    "#footer": {
-      "background-color": "#333",
-      "color": "#fff",
-      "padding": "10px"
-    },
-    "a": {
-      "text-decoration": "none",
-      "color": "blue"
-    }
-  }
+  "CSSFile": "styles.css"
 }

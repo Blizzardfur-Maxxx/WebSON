@@ -68,15 +68,26 @@
             });
         }
 
-        function compileCSS(cssData) {
-            const cssStyles = Object.entries(cssData).map(([selector, styles]) => {
-                const styleStr = Object.entries(styles).map(([property, value]) => {
-                    return `${property}: ${value};`;
+        function loadCSS(url) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = url;
+            document.head.appendChild(link);
+        }
+
+        function compileCSS(jsonData) {
+            if (jsonData['CSSFile']) {
+                loadCSS(jsonData['CSSFile']);
+            } else if (jsonData['CSS']) {
+                const cssStyles = Object.entries(jsonData['CSS']).map(([selector, styles]) => {
+                    const styleStr = Object.entries(styles).map(([property, value]) => {
+                        return `${property}: ${value};`;
+                    }).join('\n');
+                    return `${selector} { ${styleStr} }`;
                 }).join('\n');
-                return `${selector} { ${styleStr} }`;
-            }).join('\n');
-            const styleElement = document.getElementById('custom-css');
-            styleElement.textContent = cssStyles;
+                const styleElement = document.getElementById('custom-css');
+                styleElement.textContent = cssStyles;
+            }
         }
 
         function generateWebPage(jsonData) {
@@ -94,9 +105,7 @@
                 }
             });
 
-            if (jsonData['CSS']) {
-                compileCSS(jsonData['CSS']);
-            }
+            compileCSS(jsonData);
         }
 
         fetch('data.json')
