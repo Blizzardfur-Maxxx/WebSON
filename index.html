@@ -38,9 +38,17 @@
                     const paragraph = document.createElement('p');
                     paragraph.textContent = item['text'];
                     contentDiv.appendChild(paragraph);
+                } else if (item['type'] === 'image') {
+                    const image = document.createElement('img');
+                    image.src = item['src'];
+                    image.alt = item['alt'];
+                    // Set size based on the 'size' field
+                    image.style.width = item['size'] + 'px';
+                    contentDiv.appendChild(image);
                 }
             });
-        }
+        }   
+
 
         function compileFooter(footerData) {
             const footerDiv = document.getElementById('footer');

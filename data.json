@@ -9,7 +9,8 @@
   },
   "Content": [
     { "type": "heading", "text": "Welcome to My Website!", "level": 1 },
-    { "type": "paragraph", "text": "This is the content of the website." }
+    { "type": "paragraph", "text": "This is the content of the website." },
+    { "type": "image", "src": "image.jpg", "alt": "Image Alt Text", "size": 200 }
   ],
   "Footer": {
     "text": "© 2024 My Website",
