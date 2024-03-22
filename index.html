@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Webpage</title>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="content"></div>
+    <div id="footer"></div>
+
+    <script>
+        function compileHeader(headerData) {
+            const headerDiv = document.getElementById('header');
+            const title = document.createElement('h1');
+            title.textContent = headerData['title'];
+            headerDiv.appendChild(title);
+
+            const nav = document.createElement('nav');
+            headerData['navigation'].forEach(item => {
+                const link = document.createElement('a');
+                link.textContent = item['text'];
+                link.href = item['url'];
+                nav.appendChild(link);
+            });
+            headerDiv.appendChild(nav);
+        }
+
+        function compileContent(contentData) {
+            const contentDiv = document.getElementById('content');
+            contentData.forEach(item => {
+                if (item['type'] === 'heading') {
+                    const heading = document.createElement('h' + item['level']);
+                    heading.textContent = item['text'];
+                    contentDiv.appendChild(heading);
+                } else if (item['type'] === 'paragraph') {
+                    const paragraph = document.createElement('p');
+                    paragraph.textContent = item['text'];
+                    contentDiv.appendChild(paragraph);
+                }
+            });
+        }
+
+        function compileFooter(footerData) {
+            const footerDiv = document.getElementById('footer');
+
+            const footerText = document.createElement('p');
+            footerText.textContent = footerData['text'];
+            footerDiv.appendChild(footerText);
+
+            const linksList = document.createElement('ul');
+            footerData['links'].forEach(item => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.textContent = item['text'];
+                link.href = item['url'];
+                listItem.appendChild(link);
+                linksList.appendChild(listItem);
+            });
+            footerDiv.appendChild(linksList);
+        }
+
+        function generateWebPage(jsonData) {
+            console.log('JSON Data:', jsonData);
+
+            if (jsonData['Header']) {
+                compileHeader(jsonData['Header']);
+            }
+
+            if (jsonData['Content']) {
+                compileContent(jsonData['Content']);
+            }
+
+            if (jsonData['Footer']) {
+                compileFooter(jsonData['Footer']);
+            }
+        }
+
+        fetch('data.json')
+            .then(response => response.json())
+            .then(jsonData => {
+                generateWebPage(jsonData);
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+</body>
+</html>
