@@ -129,7 +129,7 @@
             compileCSS(jsonData);
         }
 
-        fetch('data.json')
+        fetch('index.json')
             .then(response => response.json())
             .then(jsonData => {
                 generateWebPage(jsonData);
