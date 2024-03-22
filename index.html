@@ -62,6 +62,27 @@
                         });
                         sectionElement.appendChild(linksList);
                         break;
+                    case 'form':
+                        const form = document.createElement('form');
+                        form.method = item['method'] || 'get';
+                        form.action = item['action'] || '#';
+                        item['fields'].forEach(field => {
+                            const label = document.createElement('label');
+                            label.textContent = field['label'];
+                            form.appendChild(label);
+                            const input = document.createElement('input');
+                            input.type = field['type'];
+                            input.name = field['name'] || '';
+                            input.placeholder = field['placeholder'] || '';
+                            form.appendChild(input);
+                            form.appendChild(document.createElement('br')); // Add line break for spacing
+                        });
+                        const submitBtn = document.createElement('button');
+                        submitBtn.type = 'submit';
+                        submitBtn.textContent = item['submitText'] || 'Submit';
+                        form.appendChild(submitBtn);
+                        sectionElement.appendChild(form);
+                        break;
                     default:
                         console.error('Unknown content type:', item['type']);
                 }
