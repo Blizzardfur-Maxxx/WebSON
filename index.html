@@ -11,77 +11,80 @@
     <div id="footer"></div>
 
     <script>
-        function compileHeader(headerData) {
-            const headerDiv = document.getElementById('header');
-            const title = document.createElement('h1');
-            title.textContent = headerData['title'];
-            headerDiv.appendChild(title);
-
-            const nav = document.createElement('nav');
-            headerData['navigation'].forEach(item => {
-                const link = document.createElement('a');
-                link.textContent = item['text'];
-                link.href = item['url'];
-                nav.appendChild(link);
-            });
-            headerDiv.appendChild(nav);
-        }
-
-        function compileContent(contentData) {
-            const contentDiv = document.getElementById('content');
-            contentData.forEach(item => {
-                if (item['type'] === 'heading') {
-                    const heading = document.createElement('h' + item['level']);
-                    heading.textContent = item['text'];
-                    contentDiv.appendChild(heading);
-                } else if (item['type'] === 'paragraph') {
-                    const paragraph = document.createElement('p');
-                    paragraph.textContent = item['text'];
-                    contentDiv.appendChild(paragraph);
-                } else if (item['type'] === 'image') {
-                    const image = document.createElement('img');
-                    image.src = item['src'];
-                    image.alt = item['alt'];
-                    // Set size based on the 'size' field
-                    image.style.width = item['size'] + 'px';
-                    contentDiv.appendChild(image);
+        function compileSection(sectionData, sectionElement) {
+            sectionData.forEach(item => {
+                switch (item['type']) {
+                    case 'title':
+                        const title = document.createElement('h1');
+                        title.textContent = item['text'];
+                        sectionElement.appendChild(title);
+                        break;
+                    case 'navigation':
+                        const nav = document.createElement('nav');
+                        item['items'].forEach(navItem => {
+                            const link = document.createElement('a');
+                            link.textContent = navItem['text'];
+                            link.href = navItem['url'];
+                            nav.appendChild(link);
+                        });
+                        sectionElement.appendChild(nav);
+                        break;
+                    case 'heading':
+                        const heading = document.createElement('h' + item['level']);
+                        heading.textContent = item['text'];
+                        sectionElement.appendChild(heading);
+                        break;
+                    case 'paragraph':
+                        const paragraph = document.createElement('p');
+                        paragraph.textContent = item['text'];
+                        sectionElement.appendChild(paragraph);
+                        break;
+                    case 'image':
+                        const image = document.createElement('img');
+                        image.src = item['src'];
+                        image.alt = item['alt'];
+                        image.style.width = item['size'] + 'px';
+                        sectionElement.appendChild(image);
+                        break;
+                    case 'text':
+                        const textElement = document.createElement('p');
+                        textElement.textContent = item['content'];
+                        sectionElement.appendChild(textElement);
+                        break;
+                    case 'links':
+                        const linksList = document.createElement('ul');
+                        item['items'].forEach(linkItem => {
+                            const listItem = document.createElement('li');
+                            const link = document.createElement('a');
+                            link.textContent = linkItem['text'];
+                            link.href = linkItem['url'];
+                            listItem.appendChild(link);
+                            linksList.appendChild(listItem);
+                        });
+                        sectionElement.appendChild(linksList);
+                        break;
+                    default:
+                        console.error('Unknown content type:', item['type']);
                 }
             });
-        }   
-
-
-        function compileFooter(footerData) {
-            const footerDiv = document.getElementById('footer');
-
-            const footerText = document.createElement('p');
-            footerText.textContent = footerData['text'];
-            footerDiv.appendChild(footerText);
-
-            const linksList = document.createElement('ul');
-            footerData['links'].forEach(item => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.textContent = item['text'];
-                link.href = item['url'];
-                listItem.appendChild(link);
-                linksList.appendChild(listItem);
-            });
-            footerDiv.appendChild(linksList);
         }
 
         function generateWebPage(jsonData) {
             console.log('JSON Data:', jsonData);
 
-            if (jsonData['Header']) {
-                compileHeader(jsonData['Header']);
+            const headerDiv = document.getElementById('header');
+            if (jsonData['Header'] && jsonData['Header']['data']) {
+                compileSection(jsonData['Header']['data'], headerDiv);
             }
 
+            const contentDiv = document.getElementById('content');
             if (jsonData['Content']) {
-                compileContent(jsonData['Content']);
+                compileSection(jsonData['Content'], contentDiv);
             }
 
-            if (jsonData['Footer']) {
-                compileFooter(jsonData['Footer']);
+            const footerDiv = document.getElementById('footer');
+            if (jsonData['Footer'] && jsonData['Footer']['data']) {
+                compileSection(jsonData['Footer']['data'], footerDiv);
             }
         }
 
