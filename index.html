@@ -7,10 +7,6 @@
     <style id="custom-css"></style>
 </head>
 <body>
-    <div id="header"></div>
-    <div id="content"></div>
-    <div id="footer"></div>
-
     <script>
         function compileSection(sectionData, sectionElement) {
             sectionData.forEach(item => {
@@ -86,20 +82,17 @@
         function generateWebPage(jsonData) {
             console.log('JSON Data:', jsonData);
 
-            const headerDiv = document.getElementById('header');
-            if (jsonData['Header'] && jsonData['Header']['data']) {
-                compileSection(jsonData['Header']['data'], headerDiv);
-            }
+            const sections = jsonData['Sections'];
+            Object.keys(sections).forEach(sectionKey => {
+                const sectionData = sections[sectionKey];
+                const sectionDiv = document.createElement('div');
+                sectionDiv.id = sectionData['id'];
+                document.body.appendChild(sectionDiv);
 
-            const contentDiv = document.getElementById('content');
-            if (jsonData['Content']) {
-                compileSection(jsonData['Content'], contentDiv);
-            }
-
-            const footerDiv = document.getElementById('footer');
-            if (jsonData['Footer'] && jsonData['Footer']['data']) {
-                compileSection(jsonData['Footer']['data'], footerDiv);
-            }
+                if (sectionData['content']) {
+                    compileSection(sectionData['content'], sectionDiv);
+                }
+            });
 
             if (jsonData['CSS']) {
                 compileCSS(jsonData['CSS']);

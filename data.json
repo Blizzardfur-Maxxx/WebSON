@@ -1,29 +1,36 @@
 {
-  "Header": {
-    "data": [
-      { "type": "title", "text": "My Website" },
-      { "type": "navigation", "items": [
-          { "text": "Home", "url": "/" },
-          { "text": "About", "url": "/about" },
-          { "text": "Contact", "url": "/contact" }
-        ]
-      }
-    ]
-  },
-  "Content": [
-    { "type": "heading", "level": 1, "text": "Welcome to My Website!" },
-    { "type": "paragraph", "text": "This is the content of the website." },
-    { "type": "image", "src": "image.jpg", "alt": "Image Alt Text", "size": 200 }
-  ],
-  "Footer": {
-    "data": [
-      { "type": "text", "content": "© 2024 My Website" },
-      { "type": "links", "items": [
-          { "text": "Privacy Policy", "url": "/privacy-policy" },
-          { "text": "Terms of Service", "url": "/terms-of-service" }
-        ]
-      }
-    ]
+  "Sections": {
+    "header": {
+      "id": "header",
+      "content": [
+        { "type": "title", "text": "My Website" },
+        { "type": "navigation", "items": [
+            { "text": "Home", "url": "/" },
+            { "text": "About", "url": "/about" },
+            { "text": "Contact", "url": "/contact" }
+          ]
+        }
+      ]
+    },
+    "content": {
+      "id": "content",
+      "content": [
+        { "type": "heading", "level": 1, "text": "Welcome to My Website!" },
+        { "type": "paragraph", "text": "This is the content of the website." },
+        { "type": "image", "src": "image.jpg", "alt": "Image Alt Text", "size": 200 }
+      ]
+    },
+    "footer": {
+      "id": "footer",
+      "content": [
+        { "type": "text", "content": "© 2024 My Website" },
+        { "type": "links", "items": [
+            { "text": "Privacy Policy", "url": "/privacy-policy" },
+            { "text": "Terms of Service", "url": "/terms-of-service" }
+          ]
+        }
+      ]
+    }
   },
   "CSS": {
     "body": {
