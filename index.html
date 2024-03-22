@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Webpage</title>
+    <style id="custom-css"></style>
 </head>
 <body>
     <div id="header"></div>
@@ -43,7 +44,9 @@
                         const image = document.createElement('img');
                         image.src = item['src'];
                         image.alt = item['alt'];
-                        image.style.width = item['size'] + 'px';
+                        if (item['size']) {
+                            image.style.width = item['size'] + 'px';
+                        }
                         sectionElement.appendChild(image);
                         break;
                     case 'text':
@@ -69,6 +72,17 @@
             });
         }
 
+        function compileCSS(cssData) {
+            const cssStyles = Object.entries(cssData).map(([selector, styles]) => {
+                const styleStr = Object.entries(styles).map(([property, value]) => {
+                    return `${property}: ${value};`;
+                }).join('\n');
+                return `${selector} { ${styleStr} }`;
+            }).join('\n');
+            const styleElement = document.getElementById('custom-css');
+            styleElement.textContent = cssStyles;
+        }
+
         function generateWebPage(jsonData) {
             console.log('JSON Data:', jsonData);
 
@@ -85,6 +99,10 @@
             const footerDiv = document.getElementById('footer');
             if (jsonData['Footer'] && jsonData['Footer']['data']) {
                 compileSection(jsonData['Footer']['data'], footerDiv);
+            }
+
+            if (jsonData['CSS']) {
+                compileCSS(jsonData['CSS']);
             }
         }
 
