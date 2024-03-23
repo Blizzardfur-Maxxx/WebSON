@@ -5,9 +5,10 @@
         "content": [
           { "type": "title", "text": "My Website" },
           { "type": "navigation", "items": [
-              { "text": "Home", "url": "/index.json" },
-              { "text": "About", "url": "/about.json" },
-              { "text": "Contact", "url": "/contact.json" }
+              { "text": "Home ", "url": "/index.json" },
+              { "text": "About ", "url": "/about.json" },
+              { "text": "Contact ", "url": "/contact.json" },
+              { "text": "JavaScript Test ", "url": "/jstest.json" }
             ]
           }
         ]
@@ -24,8 +25,8 @@
         "content": [
           { "type": "text", "content": "© 2024 My Website" },
           { "type": "links", "items": [
-              { "text": "Privacy Policy", "url": "/privacy-policy.json" },
-              { "text": "Terms of Service", "url": "/terms-of-service.json" }
+              { "text": "Privacy Policy ", "url": "/privacy-policy.json" },
+              { "text": "Terms of Service ", "url": "/terms-of-service.json" }
             ]
           }
         ]

@@ -76,6 +76,31 @@
                         submitBtn.textContent = item['submitText'] || 'Submit';
                         form.appendChild(submitBtn);
                         sectionElement.appendChild(form);
+                    case 'js':
+                        if (item['text']) {
+                            try {
+                                eval(item['text']);
+                            } catch (error) {
+                                console.error('Error executing JavaScript code:', error);
+                            }
+                        }
+                        break;
+                    case 'div':
+                        const div = document.createElement('div');
+                        if (item['id']) {
+                            div.id = item['id'];
+                        }
+                        if (item['style']) {
+                            div.style.cssText = item['style'];
+                        }
+                        if (item['events']) {
+                            Object.entries(item['events']).forEach(([event, handler]) => {
+                                div.addEventListener(event, () => {
+                                    eval(handler);
+                                });
+                            });
+                        }
+                        sectionElement.appendChild(div);
                         break;
                     default:
                         console.error('Unknown content type:', item['type']);
