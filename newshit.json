@@ -20,9 +20,9 @@
           { "type": "heading", "level": 1, "text": "Welcome to My Website!" },
           { "type": "paragraph", "text": "This is the content of the website." },
           { "type": "image", "src": "image.jpg", "alt": "Image Alt Text", "size": 200 },
-          { "type": "ul", "items": ["List Item 1", "List Item 2", "List Item 3"] },
-          { "type": "ol", "items": ["Ordered Item 1", "Ordered Item 2", "Ordered Item 3"] },
-          { "type": "hr" },
+          { "type": "unordered list", "items": ["List Item 1", "List Item 2", "List Item 3"] },
+          { "type": "ordered list", "items": ["Ordered Item 1", "Ordered Item 2", "Ordered Item 3"] },
+          { "type": "horizontal line" },
           { "type": "table", "header": ["Header 1", "Header 2", "Header 3"], "rows": [["Row 1 Cell 1", "Row 1 Cell 2", "Row 1 Cell 3"], ["Row 2 Cell 1", "Row 2 Cell 2", "Row 2 Cell 3"]] },
           { "type": "embed", "src": "https://www.youtube.com/watch?v=i9TJWsuzBLU" },
           { "type": "video", "src": "video-source.mp4", "width": "640", "height": "360", "autoplay": true }

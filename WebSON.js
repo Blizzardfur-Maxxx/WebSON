@@ -93,7 +93,7 @@ function compileSection(sectionData, sectionElement) {
                 }
                 sectionElement.appendChild(div);
                 break;
-            case 'ul':
+            case 'unordered list':
                 const ul = document.createElement('ul');
                 item['items'].forEach(listItem => {
                     const li = document.createElement('li');
@@ -102,7 +102,7 @@ function compileSection(sectionData, sectionElement) {
                 });
                 sectionElement.appendChild(ul);
                 break;
-            case 'ol':
+            case 'ordered list':
                 const ol = document.createElement('ol');
                 item['items'].forEach(listItem => {
                     const li = document.createElement('li');
@@ -111,7 +111,7 @@ function compileSection(sectionData, sectionElement) {
                 });
                 sectionElement.appendChild(ol);
                 break;
-            case 'hr':
+            case 'horizontal line':
                 const hr = document.createElement('hr');
                 sectionElement.appendChild(hr);
                 break;
