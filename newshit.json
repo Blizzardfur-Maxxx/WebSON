@@ -45,7 +45,7 @@
         "font-family": "Arial, sans-serif"
       },
       "#header": {
-        "background-color": "purple",
+        "background-color": "Teal",
         "opacity": "0.7",
         "color": "#fff",
         "padding": "10px"
@@ -55,7 +55,7 @@
         "padding": "20px"
       },
       "#footer": {
-        "background-color": "purple",
+        "background-color": "Teal",
         "opacity": "0.7",
         "color": "#fff",
         "padding": "10px"
