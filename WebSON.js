@@ -169,6 +169,10 @@ function compileSection(sectionData, sectionElement) {
                 }
                 sectionElement.appendChild(video);
                 break;
+            case 'breaker':
+                const lineBreak = document.createElement('br');
+                sectionElement.appendChild(lineBreak);
+                break;
             default:
                 console.error('Unknown content type:', item['type']);
         }
