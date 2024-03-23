@@ -110,7 +110,7 @@
                 .then(response => response.json())
                 .then(jsonData => {
                     console.log('JSON Data:', jsonData);
-                    document.body.innerHTML = ''; // Clear existing content
+                    document.body.innerHTML = '';
                     generateContent(jsonData);
                 })
                 .catch(error => console.error('Error fetching JSON:', error));
