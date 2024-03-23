@@ -66,6 +66,7 @@ function compileSection(sectionData, sectionElement) {
                 submitBtn.textContent = item['submitText'] || 'Submit';
                 form.appendChild(submitBtn);
                 sectionElement.appendChild(form);
+                break;
             case 'js':
                 if (item['text']) {
                     try {
@@ -91,6 +92,82 @@ function compileSection(sectionData, sectionElement) {
                     });
                 }
                 sectionElement.appendChild(div);
+                break;
+            case 'ul':
+                const ul = document.createElement('ul');
+                item['items'].forEach(listItem => {
+                    const li = document.createElement('li');
+                    li.textContent = listItem;
+                    ul.appendChild(li);
+                });
+                sectionElement.appendChild(ul);
+                break;
+            case 'ol':
+                const ol = document.createElement('ol');
+                item['items'].forEach(listItem => {
+                    const li = document.createElement('li');
+                    li.textContent = listItem;
+                    ol.appendChild(li);
+                });
+                sectionElement.appendChild(ol);
+                break;
+            case 'hr':
+                const hr = document.createElement('hr');
+                sectionElement.appendChild(hr);
+                break;
+            case 'table':
+                const table = document.createElement('table');
+                if (item['header']) {
+                    const thead = document.createElement('thead');
+                    const headerRow = document.createElement('tr');
+                    item['header'].forEach(headerText => {
+                        const th = document.createElement('th');
+                        th.textContent = headerText;
+                        headerRow.appendChild(th);
+                    });
+                    thead.appendChild(headerRow);
+                    table.appendChild(thead);
+                }
+                if (item['rows']) {
+                    const tbody = document.createElement('tbody');
+                    item['rows'].forEach(rowData => {
+                        const row = document.createElement('tr');
+                        rowData.forEach(cellData => {
+                            const cell = document.createElement('td');
+                            cell.textContent = cellData;
+                            row.appendChild(cell);
+                        });
+                        tbody.appendChild(row);
+                    });
+                    table.appendChild(tbody);
+                }
+                sectionElement.appendChild(table);
+                break;
+            case 'embed':
+                const embed = document.createElement('iframe');
+                embed.src = item['src'];
+                embed.width = item['width'] || '640';
+                embed.height = item['height'] || '360';
+                embed.allowfullscreen = true;
+                sectionElement.appendChild(embed);
+                break;
+            case 'video':
+                const video = document.createElement('video');
+                video.src = item['src'];
+                video.controls = true;
+                if (item['width']) {
+                    video.width = item['width'];
+                }
+                if (item['height']) {
+                    video.height = item['height'];
+                }
+                if (item['type']) {
+                    video.type = item['type'];
+                }
+                if (item['autoplay']) {
+                    video.autoplay = true;
+                }
+                sectionElement.appendChild(video);
                 break;
             default:
                 console.error('Unknown content type:', item['type']);

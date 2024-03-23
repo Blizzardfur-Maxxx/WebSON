@@ -8,8 +8,8 @@
             { "text": "Home ", "url": "/index.json" },
             { "text": "About ", "url": "/about.json" },
             { "text": "Contact ", "url": "/contact.json" },
-            { "text": "JavaScript Test ", "url": "/jstest.json" }
-
+            { "text": "JavaScript Test ", "url": "/jstest.json" },
+            { "text": "New Shit ", "url": "/newshit.json" }
           ]
         }
       ]
