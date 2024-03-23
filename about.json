@@ -1,0 +1,36 @@
+{
+    "Sections": {
+      "header": {
+        "id": "header",
+        "content": [
+          { "type": "title", "text": "My Website" },
+          { "type": "navigation", "items": [
+              { "text": "Home", "url": "/index.json" },
+              { "text": "About", "url": "/about.json" },
+              { "text": "Contact", "url": "/contact.json" }
+            ]
+          }
+        ]
+      },
+      "content": {
+        "id": "content",
+        "content": [
+          { "type": "heading", "level": 1, "text": "About Us" },
+          { "type": "paragraph", "text": "This is the about page content." }
+        ]
+      },
+      "footer": {
+        "id": "footer",
+        "content": [
+          { "type": "text", "content": "© 2024 My Website" },
+          { "type": "links", "items": [
+              { "text": "Privacy Policy", "url": "/privacy-policy" },
+              { "text": "Terms of Service", "url": "/terms-of-service" }
+            ]
+          }
+        ]
+      }
+    },
+    "CSSFile": "styles.css"
+  }
+  

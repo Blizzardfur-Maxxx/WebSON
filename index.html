@@ -22,6 +22,10 @@
                             const link = document.createElement('a');
                             link.textContent = navItem['text'];
                             link.href = navItem['url'];
+                            link.addEventListener('click', event => {
+                                event.preventDefault();
+                                generateWebPage(navItem['url']);
+                            });
                             nav.appendChild(link);
                         });
                         sectionElement.appendChild(nav);
@@ -111,14 +115,25 @@
             }
         }
 
-        function generateWebPage(jsonData) {
-            console.log('JSON Data:', jsonData);
+        function generateWebPage(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(jsonData => {
+                    console.log('JSON Data:', jsonData);
+                    document.body.innerHTML = ''; // Clear existing content
+                    generateContent(jsonData);
+                })
+                .catch(error => console.error('Error fetching JSON:', error));
+        }
 
+        function generateContent(jsonData) {
             const sections = jsonData['Sections'];
             Object.keys(sections).forEach(sectionKey => {
                 const sectionData = sections[sectionKey];
                 const sectionDiv = document.createElement('div');
-                sectionDiv.id = sectionData['id'];
+                if (sectionData['id']) {
+                    sectionDiv.id = sectionData['id'];
+                }
                 document.body.appendChild(sectionDiv);
 
                 if (sectionData['content']) {
@@ -132,7 +147,7 @@
         fetch('index.json')
             .then(response => response.json())
             .then(jsonData => {
-                generateWebPage(jsonData);
+                generateContent(jsonData);
             })
             .catch(error => console.error('Error fetching JSON:', error));
     </script>
