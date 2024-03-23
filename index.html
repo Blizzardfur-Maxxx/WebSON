@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Webpage</title>
-    <style id="custom-css"></style>
+    <style id="global-css"></style>
 </head>
 <body>
     <script>
@@ -91,18 +91,34 @@
         }
 
         function compileCSS(jsonData) {
-            if (jsonData['CSSFile']) {
-                loadCSS(jsonData['CSSFile']);
-            } else if (jsonData['CSS']) {
-                const cssStyles = Object.entries(jsonData['CSS']).map(([selector, styles]) => {
+            const globalCSS = jsonData['CSS'] || {};
+            const globalCSSFile = jsonData['CSSFile'];
+
+            if (globalCSSFile) {
+                loadCSS(globalCSSFile);
+            } else {
+                const cssStyles = Object.entries(globalCSS).map(([selector, styles]) => {
                     const styleStr = Object.entries(styles).map(([property, value]) => {
                         return `${property}: ${value};`;
                     }).join('\n');
                     return `${selector} { ${styleStr} }`;
                 }).join('\n');
-                const styleElement = document.getElementById('custom-css');
+                const styleElement = document.getElementById('global-css');
                 styleElement.textContent = cssStyles;
             }
+        }
+
+        function compilePageCSS(jsonData) {
+            const pageCSS = jsonData['CSS'] || {};
+            const cssStyles = Object.entries(pageCSS).map(([selector, styles]) => {
+                const styleStr = Object.entries(styles).map(([property, value]) => {
+                    return `${property}: ${value};`;
+                }).join('\n');
+                return `${selector} { ${styleStr} }`;
+            }).join('\n');
+            const styleElement = document.createElement('style');
+            styleElement.textContent = cssStyles;
+            document.head.appendChild(styleElement);
         }
 
         function generateWebPage(url) {
@@ -131,13 +147,14 @@
                 }
             });
 
-            compileCSS(jsonData);
+            compilePageCSS(jsonData);
         }
 
         fetch('index.json')
             .then(response => response.json())
             .then(jsonData => {
                 generateContent(jsonData);
+                compileCSS(jsonData);
             })
             .catch(error => console.error('Error fetching JSON:', error));
     </script>

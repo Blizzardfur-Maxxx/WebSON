@@ -31,6 +31,27 @@
         ]
       }
     },
-    "CSSFile": "styles.css"
+  "CSS": {
+    "body": {
+      "font-family": "Arial, sans-serif"
+    },
+    "#header": {
+      "background-color": "lightblue",
+      "color": "#fff",
+      "padding": "10px"
+    },
+    "#content": {
+      "padding": "20px"
+    },
+    "#footer": {
+      "background-color": "lightblue",
+      "color": "#fff",
+      "padding": "10px"
+    },
+    "a": {
+      "text-decoration": "none",
+      "color": "blue"
+    }
+  }
   }
   
