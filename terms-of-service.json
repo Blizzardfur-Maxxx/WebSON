@@ -15,8 +15,8 @@
       "content": {
         "id": "content",
         "content": [
-          { "type": "heading", "level": 1, "text": "About Us" },
-          { "type": "paragraph", "text": "This is the about page content." }
+          { "type": "heading", "level": 1, "text": "Terms of Service" },
+          { "type": "paragraph", "text": "This is the terms of service page content." }
         ]
       },
       "footer": {

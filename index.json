@@ -5,7 +5,7 @@
       "content": [
         { "type": "title", "text": "My Website" },
         { "type": "navigation", "items": [
-            { "text": "Home", "url": "/" },
+            { "text": "Home", "url": "/index.json" },
             { "text": "About", "url": "/about.json" },
             { "text": "Contact", "url": "/contact.json" }
           ]
@@ -20,29 +20,13 @@
         { "type": "image", "src": "image.jpg", "alt": "Image Alt Text", "size": 200 }
       ]
     },
-    "form": {
-      "id": "contact-form",
-      "content": [
-        { "type": "heading", "level": 2, "text": "Contact Us" },
-        { "type": "form", 
-          "method": "post",
-          "action": "/submit-form",
-          "fields": [
-            { "type": "label", "label": "Your Name", "name": "name", "placeholder": "Your Name" },
-            { "type": "label", "label": "Your Email", "name": "email", "placeholder": "Your Email" },
-            { "type": "label", "label": "Your Message", "name": "message", "placeholder": "Your Message" }
-          ],
-          "submitText": "Submit"
-        }
-      ]
-    },
     "footer": {
       "id": "footer",
       "content": [
         { "type": "text", "content": "© 2024 My Website" },
         { "type": "links", "items": [
-            { "text": "Privacy Policy", "url": "/privacy-policy" },
-            { "text": "Terms of Service", "url": "/terms-of-service" }
+            { "text": "Privacy Policy", "url": "/privacy-policy.json" },
+            { "text": "Terms of Service", "url": "/terms-of-service.json" }
           ]
         }
       ]
