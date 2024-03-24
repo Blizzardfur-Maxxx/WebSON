@@ -20,11 +20,6 @@
             { "type": "heading", "level": 1, "text": "Js Eval test 1+1" },
             { "type": "js", "text": "alert(1 + 1);" }
         ]
-      },
-      "alert-eval": {
-        "id": "alert-eval",
-        "content": [
-        ]
       }
     },
     "CSS": {
